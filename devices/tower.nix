@@ -20,6 +20,14 @@ in {
     LC_TELEPHONE = "en_DK.UTF-8";
     LC_TIME = "en_DK.UTF-8";
   };
+  # Swap - create with `btrfs filesystem mkswapfile --size <size>g /var/swapfile`
+  swapDevices = [ { device = "/var/swapfile"; size = 18*1024; } ];
+  boot.resumeDevice = "/dev/dm-0";  # the unlocked drive mapping
+  boot.kernelParams = [
+    # filefrag -v /var/swapfile  # not btrfs
+    # btrfs inspect-internal map-swapfile -r /var/swapfile  # btrfs
+    "resume_offset=10134041"
+  ];
   # Configure console keymap
   console.keyMap = "dk-latin1";
   # nvidia: Make sure opengl is enabled

@@ -32,6 +32,14 @@ in {
   };
   # Configure console keymap
   console.keyMap = "dk-latin1";
+  # Swap - create with `btrfs filesystem mkswapfile --size <size>g /var/swapfile`
+  swapDevices = [ { device = "/var/swapfile"; size = 10*1024; } ];
+  boot.resumeDevice = "/dev/dm-0";  # the unlocked drive mapping
+  boot.kernelParams = [
+    # filefrag -v /var/swapfile  # not btrfs
+    # btrfs inspect-internal map-swapfile -r /var/swapfile  # btrfs
+    "resume_offset=11080487"
+  ];
   #
   system.stateVersion = "23.11";  # Do not change
 }
