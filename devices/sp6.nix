@@ -1,20 +1,26 @@
 # import this file in /etc/nixos/configuration.nix
 { config, ... }:
 let
-  nixos_hardware = builtins.fetchGit {
+  nixos_hardware = fetchGit {
     name = "nixos-hardware-2024-03-03";
     url = "https://github.com/NixOS/nixos-hardware/";
     rev = "59e37017b9ed31dee303dbbd4531c594df95cfbc";
     submodules = true;
   };
+  libcamera_surface = fetchGit {
+    name = "libcamera-surface-0.2.0";
+    url = "https://github.com/damianoognissanti/libcamera-surface/";
+    rev = "7268e5ed4389d8b2390321dd4f47da200bd75fde";
+    submodules = true;
+  };
   pconf = import ../common/pconf.nix.secret;
 in {
   imports = [
-    "${nixos_hardware}/microsoft/surface/surface-pro-intel"
+    /etc/nixos/hardware-configuration.nix
+    "${nixos_hardware}/microsoft/surface/surface-pro-intel/"
+    "${libcamera_surface}/libcamera.nix"
     ../common/configuration.nix
   ];
-  #
-  powerManagement.cpuFreqGovernor = "powersave";
   #
   networking.hostName = "${pconf.user}-surfacepro"; # Define your hostname.
   # Select internationalisation properties.
@@ -40,6 +46,8 @@ in {
     # btrfs inspect-internal map-swapfile -r /var/swapfile  # btrfs
     "resume_offset=11080487"
   ];
+  #
+  services.thermald.enable = true;
   #
   system.stateVersion = "23.11";  # Do not change
 }

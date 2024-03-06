@@ -6,6 +6,8 @@ in {
     authy
     bitwarden
     brave
+    easyeffects
+    gimp
     git-crypt
     gnomeExtensions.bing-wallpaper-changer
     gnomeExtensions.dash-to-panel

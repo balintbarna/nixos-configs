@@ -3,6 +3,7 @@ let
   pconf = import ../common/pconf.nix.secret;
 in {
   imports = [
+    /etc/nixos/hardware-configuration.nix
     ../common/configuration.nix
   ];
   #

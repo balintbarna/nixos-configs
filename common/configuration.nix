@@ -13,13 +13,12 @@ in {
   users.users.${pconf.user} = {
     isNormalUser = true;
     description = pconf.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
   };
   #
   environment.systemPackages = with pkgs; [
     evolution  # to set up mail accounts
     home-manager  # declarative home
-    sbctl  # for secureboot key management
   ];
   #
   programs.steam.enable = true;

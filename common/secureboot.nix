@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  lanzaboote = builtins.fetchGit {
+  lanzaboote = fetchGit {
     name = "lanzaboote-0.3.0";
     url = "https://github.com/nix-community/lanzaboote/";
     ref = "refs/tags/v0.3.0";
