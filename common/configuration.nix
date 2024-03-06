@@ -18,6 +18,7 @@ in {
   #
   environment.systemPackages = with pkgs; [
     evolution  # to set up mail accounts
+    fragments
     home-manager  # declarative home
   ];
   #
@@ -61,7 +62,6 @@ in {
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
   ]) ++ (with pkgs.gnome; [
-    epiphany
     gnome-maps
     simple-scan
     yelp

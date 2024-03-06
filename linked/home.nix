@@ -9,10 +9,10 @@ in {
     easyeffects
     gimp
     git-crypt
+    gnomeExtensions.appindicator
     gnomeExtensions.bing-wallpaper-changer
     gnomeExtensions.dash-to-panel
     gnomeExtensions.touch-x
-    qbittorrent
     spotify
     stremio
     terminator
