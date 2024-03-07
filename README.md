@@ -1,14 +1,16 @@
 # Personal NixOS Configuration
 
-Follow the steps below to apply the build on a new install.
+Follow the steps below to apply the build on a new install. First you will need the keyfile from another computer that is already authenticated.
 
 ```bash
-# you will need the keyfile from another computer that is already authenticated
-git-crypt export-key <key-export-path>  # inside the repo root directory
+# cd to repo directory
+git-crypt export-key <key-export-path>
 ```
 
+Clone with git.
+Unlock secrets with git-crypt.
+
 ```bash
-# before cloning you'll need git
 nix-shell -p git git-crypt
 cd  # go to home directory
 git clone git@github.com:balintbarna/nixos-configs.git
@@ -16,21 +18,57 @@ cd nixos-configs
 git-crypt unlock <key-download-path>
 ```
 
+Link the correct config file from the repo and rebuild.
+
 ```bash
 sudo su  # as root
 rm /etc/nixos/configuration.nix
-# ensure that the file points to the right device file
-ln -s /home/balint/nixos-configs/linked/configuration.nix /etc/nixos/configuration.nix
+ln -s /home/balint/nixos-configs/devices/sp6.nix /etc/nixos/configuration.nix
 nixos-rebuild switch
+exit
 ```
+
+Link the home config file and activate it.
 
 ```bash
 # as user
-rm ~/.config/home-manager/home.nix
 mkdir -p ~/.config/home-manager
+rm ~/.config/home-manager/home.nix
 ln -s /home/balint/nixos-configs/linked/home.nix ~/.config/home-manager/home.nix
 home-manager switch
 ```
+
+
+## Commands
+
+Create a swap file - or just let the config auto-create it for you.
+
+```bash
+btrfs filesystem mkswapfile --size <size>g /var/swapfile
+```
+
+Find swapfile offset for kernel parameter config.
+
+```bash
+filefrag -v /var/swapfile  # not btrfs
+btrfs inspect-internal map-swapfile -r /var/swapfile  # btrfs
+```
+
+Launch front camera stream on SP6.
+
+```bash
+gst-launch-1.0 libcamerasrc camera-name='\\\_SB_.PCI0.I2C2.CAMF' ! videoconvert ! v4l2sink device=/dev/video0
+```
+
+Enroll auto-unlock of encrypted filesystem.
+If you are stuck on LUKS1 see guide below.
+
+```bash
+blkid | grep crypto  # Find device
+systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 <luks2-partition>  # Enroll
+```
+
+> Plymouth boot splash screen option will hide boot text preventing you from entering the encryption password. Make sure to setup auto-unlock first.
 
 
 ## TODOs

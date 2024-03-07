@@ -1,6 +1,4 @@
-# import this file in /etc/nixos/configuration.nix
-{ config, pkgs, ... }:
-let
+{ config, pkgs, ... }: let
   nixos_hardware = fetchGit {
     name = "nixos-hardware-2024-03-03";
     url = "https://github.com/NixOS/nixos-hardware/";
@@ -25,7 +23,16 @@ in {
   ];
   #
   networking.hostName = "${pconf.user}-surfacepro"; # Define your hostname.
-  #
+  # Configure console keymap
+  console.keyMap = "dk-latin1";
+  # Swap
+  swapDevices = [ { device = "/var/swapfile"; size = 10*1024; } ];
+  boot.resumeDevice = "/dev/dm-0";  # the unlocked drive mapping
+  boot.kernelParams = [
+    "resume_offset=11080487"  # for hibernate resume
+    "mem_sleep_default=deep"  # less drain on sleep
+  ];
+  # Camera dependencies
   environment.systemPackages = with pkgs; [
     ffmpeg
     gst_all_1.gstreamer
@@ -33,18 +40,6 @@ in {
     gst_all_1.gst-plugins-good
     v4l-utils
   ];
-  # Configure console keymap
-  console.keyMap = "dk-latin1";
-  # Swap - create with `btrfs filesystem mkswapfile --size <size>g /var/swapfile`
-  swapDevices = [ { device = "/var/swapfile"; size = 10*1024; } ];
-  boot.resumeDevice = "/dev/dm-0";  # the unlocked drive mapping
-  boot.kernelParams = [
-    # filefrag -v /var/swapfile  # not btrfs
-    # btrfs inspect-internal map-swapfile -r /var/swapfile  # btrfs
-    "resume_offset=11080487"  # for hibernate resume
-    "mem_sleep_default=deep"  # less drain on sleep
-  ];
-  # front camera - gst-launch-1.0 libcamerasrc camera-name='\\\_SB_.PCI0.I2C2.CAMF' ! videoconvert ! v4l2sink device=/dev/video0
   boot.kernelModules = [
     "v4l2loopback"
   ];

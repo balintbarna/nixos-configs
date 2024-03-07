@@ -1,7 +1,3 @@
-# Plymouth option will hide boot text, make sure to enroll device for auto decrypt first
-# Find device - `blkid | grep crypto`
-# Enroll - `systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 <luks2 partition>`
-#
 { config, pkgs, my_user, my_name, ... }:
 let
   pconf = import ../common/pconf.nix.secret;
