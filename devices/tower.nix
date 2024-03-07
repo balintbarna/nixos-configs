@@ -8,19 +8,6 @@ in {
   ];
   #
   networking.hostName = "${pconf.user}-tower"; # Define your hostname.
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_DK.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_DK.UTF-8";
-    LC_IDENTIFICATION = "en_DK.UTF-8";
-    LC_MEASUREMENT = "en_DK.UTF-8";
-    LC_MONETARY = "en_DK.UTF-8";
-    LC_NAME = "en_DK.UTF-8";
-    LC_NUMERIC = "en_DK.UTF-8";
-    LC_PAPER = "en_DK.UTF-8";
-    LC_TELEPHONE = "en_DK.UTF-8";
-    LC_TIME = "en_DK.UTF-8";
-  };
   # Swap - create with `btrfs filesystem mkswapfile --size <size>g /var/swapfile`
   swapDevices = [ { device = "/var/swapfile"; size = 18*1024; } ];
   boot.resumeDevice = "/dev/dm-0";  # the unlocked drive mapping

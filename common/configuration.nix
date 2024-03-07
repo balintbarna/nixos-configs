@@ -7,6 +7,7 @@ let
   pconf = import ../common/pconf.nix.secret;
 in {
   imports = [
+    ./binaries.nix
     # ./secureboot.nix
   ];
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -18,11 +19,24 @@ in {
   #
   environment.systemPackages = with pkgs; [
     evolution  # to set up mail accounts
-    fragments
+    fragments  # torrent
     home-manager  # declarative home
   ];
   #
   programs.steam.enable = true;
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_DK.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "da_DK.UTF-8";
+    LC_IDENTIFICATION = "da_DK.UTF-8";
+    LC_MEASUREMENT = "da_DK.UTF-8";
+    LC_MONETARY = "da_DK.UTF-8";
+    LC_NAME = "da_DK.UTF-8";
+    LC_NUMERIC = "da_DK.UTF-8";
+    LC_PAPER = "da_DK.UTF-8";
+    LC_TELEPHONE = "da_DK.UTF-8";
+    LC_TIME = "da_DK.UTF-8";
+  };
   #
   services = {
     flatpak.enable = true;
@@ -65,7 +79,7 @@ in {
     gnome-maps
     simple-scan
     yelp
-  ]);
+  ]);  # clutter removal
   #
   documentation.nixos.enable = false;
 }

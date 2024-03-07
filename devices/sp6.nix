@@ -1,5 +1,5 @@
 # import this file in /etc/nixos/configuration.nix
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   nixos_hardware = fetchGit {
     name = "nixos-hardware-2024-03-03";
@@ -7,12 +7,14 @@ let
     rev = "59e37017b9ed31dee303dbbd4531c594df95cfbc";
     submodules = true;
   };
+  #
   libcamera_surface = fetchGit {
     name = "libcamera-surface-0.2.0";
     url = "https://github.com/damianoognissanti/libcamera-surface/";
     rev = "7268e5ed4389d8b2390321dd4f47da200bd75fde";
     submodules = true;
   };
+  #
   pconf = import ../common/pconf.nix.secret;
 in {
   imports = [
@@ -23,19 +25,14 @@ in {
   ];
   #
   networking.hostName = "${pconf.user}-surfacepro"; # Define your hostname.
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_DK.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "da_DK.UTF-8";
-    LC_IDENTIFICATION = "da_DK.UTF-8";
-    LC_MEASUREMENT = "da_DK.UTF-8";
-    LC_MONETARY = "da_DK.UTF-8";
-    LC_NAME = "da_DK.UTF-8";
-    LC_NUMERIC = "da_DK.UTF-8";
-    LC_PAPER = "da_DK.UTF-8";
-    LC_TELEPHONE = "da_DK.UTF-8";
-    LC_TIME = "da_DK.UTF-8";
-  };
+  #
+  environment.systemPackages = with pkgs; [
+    ffmpeg
+    gst_all_1.gstreamer
+    gst_all_1.gst-plugins-base
+    gst_all_1.gst-plugins-good
+    v4l-utils
+  ];
   # Configure console keymap
   console.keyMap = "dk-latin1";
   # Swap - create with `btrfs filesystem mkswapfile --size <size>g /var/swapfile`
@@ -44,9 +41,20 @@ in {
   boot.kernelParams = [
     # filefrag -v /var/swapfile  # not btrfs
     # btrfs inspect-internal map-swapfile -r /var/swapfile  # btrfs
-    "resume_offset=11080487"
+    "resume_offset=11080487"  # for hibernate resume
+    "mem_sleep_default=deep"  # less drain on sleep
   ];
-  #
+  # front camera - gst-launch-1.0 libcamerasrc camera-name='\\\_SB_.PCI0.I2C2.CAMF' ! videoconvert ! v4l2sink device=/dev/video0
+  boot.kernelModules = [
+    "v4l2loopback"
+  ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    v4l2loopback.out
+  ];
+  boot.extraModprobeConfig = ''
+    options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+  '';
+  # less overheating
   services.thermald.enable = true;
   #
   system.stateVersion = "23.11";  # Do not change
