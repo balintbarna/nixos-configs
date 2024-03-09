@@ -1,13 +1,14 @@
-{ config, pkgs, my_user, my_name, ... }:
+{ config, pkgs, ... }:
 let
   pconf = import ../common/pconf.nix.secret;
 in {
   imports = [
-    ./binaries.nix
     ./noclutter.nix
     ./sound.nix
-    # ./nixosgui.nix
+    ./locale.dk.nix
     # ./secureboot.nix
+    # ./nixosgui.nix
+    ./binaries.nix
   ];
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${pconf.user} = {
@@ -23,19 +24,6 @@ in {
   ];
   #
   programs.steam.enable = true;
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_DK.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "da_DK.UTF-8";
-    LC_IDENTIFICATION = "da_DK.UTF-8";
-    LC_MEASUREMENT = "da_DK.UTF-8";
-    LC_MONETARY = "da_DK.UTF-8";
-    LC_NAME = "da_DK.UTF-8";
-    LC_NUMERIC = "da_DK.UTF-8";
-    LC_PAPER = "da_DK.UTF-8";
-    LC_TELEPHONE = "da_DK.UTF-8";
-    LC_TIME = "da_DK.UTF-8";
-  };
   #
   services = {
     flatpak.enable = true;
@@ -57,7 +45,7 @@ in {
   # boot.plymouth.enable = true;
   # Enable networking
   networking.networkmanager.enable = true;
-  #
+  # Xbox controller driver
   hardware.xone.enable = true;  # xbox controller dongle
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
