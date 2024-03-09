@@ -5,6 +5,7 @@ in {
   imports = [
     ./binaries.nix
     ./noclutter.nix
+    ./sound.nix
     # ./nixosgui.nix
     # ./secureboot.nix
   ];
@@ -39,12 +40,6 @@ in {
   services = {
     flatpak.enable = true;
     openssh.enable = true;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
     printing.enable = true;
     xserver = {
       enable = true;
@@ -63,11 +58,8 @@ in {
   # boot.plymouth.enable = true;
   # Enable networking
   networking.networkmanager.enable = true;
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  #
   hardware.xone.enable = true;  # xbox controller dongle
-  security.rtkit.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 }
