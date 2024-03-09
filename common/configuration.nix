@@ -4,6 +4,8 @@ let
 in {
   imports = [
     ./binaries.nix
+    ./noclutter.nix
+    # ./nixosgui.nix
     # ./secureboot.nix
   ];
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -68,14 +70,4 @@ in {
   security.rtkit.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  #
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-tour
-  ]) ++ (with pkgs.gnome; [
-    gnome-maps
-    simple-scan
-    yelp
-  ]);  # clutter removal
-  #
-  documentation.nixos.enable = false;
 }
