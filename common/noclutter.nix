@@ -8,4 +8,6 @@
   ]);
   #
   documentation.nixos.enable = false;
+  #
+  services.xserver.excludePackages = [ pkgs.xterm ];
 }

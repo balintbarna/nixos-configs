@@ -45,7 +45,6 @@ in {
       enable = true;
       layout = "dk";
       xkbVariant = "";
-      excludePackages = [ pkgs.xterm ];
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
     };
