@@ -6,6 +6,9 @@ in {
     /etc/nixos/hardware-configuration.nix
     ../common/configuration.nix
   ];
+  # Gaming
+  programs.steam.enable = true;
+  hardware.xone.enable = true;  # xbox controller dongle
   #
   networking.hostName = "${pconf.user}-tower"; # Define your hostname.
   # Swap - create with `btrfs filesystem mkswapfile --size <size>g /var/swapfile`

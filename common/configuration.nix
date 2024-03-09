@@ -23,14 +23,10 @@ in {
     fragments  # torrent
     home-manager  # declarative home
   ];
-  #
-  programs.steam.enable = true;
   # Auto unlock:
   boot.initrd.systemd.enable = true;
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   # boot.plymouth.enable = true;
-  # Xbox controller driver
-  hardware.xone.enable = true;  # xbox controller dongle
 }
