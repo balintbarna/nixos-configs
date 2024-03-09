@@ -1,6 +1,6 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
-  pconf = import ../common/pconf.nix.secret;
+  pconf = import ./pconf.nix.secret;
 in {
   home.packages = with pkgs; [
     authy

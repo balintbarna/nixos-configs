@@ -1,10 +1,7 @@
-{ config, lib, pkgs, ... }:
-let
-  pconf = import ../common/pconf.nix.secret;
-in {
+{ lib, pconf, ... }: {
   imports = [
-    /etc/nixos/hardware-configuration.nix
-    ../common/configuration.nix
+    ./hw.nix
+    ../../common/configuration.nix
   ];
   # Gaming
   programs.steam.enable = true;
@@ -19,8 +16,6 @@ in {
     # btrfs inspect-internal map-swapfile -r /var/swapfile  # btrfs
     "resume_offset=10134041"
   ];
-  # Configure console keymap
-  console.keyMap = "dk-latin1";
   # nvidia: Make sure opengl is enabled
   hardware.opengl = {
     enable = true;
