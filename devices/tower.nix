@@ -38,6 +38,8 @@ in {
   # nvidia
   services.xserver.displayManager.gdm.wayland = false;
   services.xserver.videoDrivers = ["nvidia"];
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
   #
   system.stateVersion = "23.11";  # Do not change
 }

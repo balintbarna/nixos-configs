@@ -5,6 +5,7 @@ in {
   imports = [
     ./noclutter.nix
     ./sound.nix
+    ./desktop.nix
     ./locale.dk.nix
     # ./secureboot.nix
     # ./nixosgui.nix
@@ -24,29 +25,12 @@ in {
   ];
   #
   programs.steam.enable = true;
-  #
-  services = {
-    flatpak.enable = true;
-    openssh.enable = true;
-    printing.enable = true;
-    xserver = {
-      enable = true;
-      layout = "dk";
-      xkbVariant = "";
-      desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
-    };
-  };
   # Auto unlock:
   boot.initrd.systemd.enable = true;
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   # boot.plymouth.enable = true;
-  # Enable networking
-  networking.networkmanager.enable = true;
   # Xbox controller driver
   hardware.xone.enable = true;  # xbox controller dongle
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 }
