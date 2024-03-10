@@ -24,6 +24,7 @@
     system = "x86_64-linux";
     specialArgs = attrs // { inherit pconf; };
     pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+    extraSpecialArgs = { inherit pconf; };
   in {
     nixosConfigurations = {
       "${pconf.user}-surfacepro" = nixpkgs.lib.nixosSystem {
@@ -37,7 +38,7 @@
     };
     homeConfigurations = {
       "${pconf.user}" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        inherit pkgs extraSpecialArgs;
         modules = [ ./common/home.nix ];
       };
     };

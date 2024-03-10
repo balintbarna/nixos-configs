@@ -1,12 +1,13 @@
-{ pkgs, ... }:
-let
-  pconf = import ./pconf.nix.secret;
-in {
+{ pkgs, pconf, ... }: {
+  imports = [
+    ./online-accounts.nix
+  ];
   home.packages = with pkgs; [
     authy
     bitwarden
     brave
     easyeffects
+    element-desktop
     gimp
     git-crypt
     gnomeExtensions.appindicator

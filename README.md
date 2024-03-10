@@ -23,7 +23,7 @@ Link the correct config file from the repo and rebuild.
 ```bash
 sudo su  # as root
 rm /etc/nixos/configuration.nix
-ln -s /home/balint/nixos-configs/devices/sp6.nix /etc/nixos/configuration.nix
+ln -s /home/balint/nixos-configs/flake.nix /etc/nixos/flake.nix
 nixos-rebuild switch
 exit
 ```
@@ -33,8 +33,7 @@ Link the home config file and activate it.
 ```bash
 # as user
 mkdir -p ~/.config/home-manager
-rm ~/.config/home-manager/home.nix
-ln -s /home/balint/nixos-configs/linked/home.nix ~/.config/home-manager/home.nix
+ln -s /home/balint/nixos-configs/flake.nix ~/.config/home-manager/flake.nix
 home-manager switch
 ```
 
@@ -76,15 +75,10 @@ systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 <luks2-partition>  # Enro
 Items needed before a desired state is reached.
 
 
-### Enable secureboot
-
-Started in secureboot.nix. :
-[Quick Start](https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md)
-
-
 ### Camera on Surface Pro 6
 
-For some reason the from camera image is just a green blob. The back camera is upside down. :
+The front camera image is just a green blob. The back camera is upside down. The font camera works with userspace libraries, requires running a terminal command to activate it. It's (not) mirrored and the picture quality is bad.
+:
 [Camera Support](https://github.com/linux-surface/linux-surface/wiki/Camera-Support#module-ids-and-sensor-mappings)
 :
 [SB2 Camera Issue](https://github.com/NixOS/nixos-hardware/issues/523)
@@ -92,12 +86,13 @@ For some reason the from camera image is just a green blob. The back camera is u
 
 ### Declarative Accounts Configuration
 
-I don't want to use Evolution to configure my accounts for email calendar and contacts. :
-[Guide](https://srid.ca/cli/email)
+I don't want to use Evolution to configure my accounts for email calendar and contacts. It seems like the home manager accounts module doesn't work well with gnome software.
 
 
 ## Useful Links
 
+[Secure Boot](https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md)
+:
 [Btrfs Convert](https://archive.kernel.org/oldwiki/btrfs.wiki.kernel.org/index.php/Conversion_from_Ext3/4_and_ReiserFS.html)
 :
 [LUKS2 Upgrade](https://gist.github.com/Edu4rdSHL/8f97eb1bab454fb2b348f1167cee7cd2)
