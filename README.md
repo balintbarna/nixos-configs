@@ -64,7 +64,7 @@ If you are stuck on LUKS1 see guide below.
 
 ```bash
 blkid | grep crypto  # Find device
-systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 <luks2-partition>  # Enroll
+systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+1+2+3+7 <luks2-partition>  # Enroll
 ```
 
 > Plymouth boot splash screen option will hide boot text preventing you from entering the encryption password. Make sure to setup auto-unlock first.
