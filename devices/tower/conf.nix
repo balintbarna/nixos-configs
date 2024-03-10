@@ -1,4 +1,4 @@
-{ lib, pconf, ... }: {
+{ pkgs, lib, pconf, ... }: {
   imports = [
     ./hw.nix
     ../../common/configuration.nix
@@ -6,6 +6,10 @@
   # Gaming
   programs.steam.enable = true;
   hardware.xone.enable = true;  # xbox controller dongle
+  environment.systemPackages = with pkgs; [
+    heroic
+    itch
+  ];
   #
   networking.hostName = "${pconf.user}-tower"; # Define your hostname.
   # Swap - create with `btrfs filesystem mkswapfile --size <size>g /var/swapfile`
