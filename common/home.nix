@@ -3,17 +3,20 @@
     ./online-accounts.nix
   ];
   home.packages = with pkgs; [
-    authy
-    bitwarden
-    brave
-    easyeffects
-    element-desktop
+    authy  # MFA codes
+    bitwarden  # passwords
+    brave  # browser
+    easyeffects  # bass boost and more
+    element-desktop  # matrix chat
+    evolution  # to set up mail accounts
     gimp
-    git-crypt
-    gnomeExtensions.appindicator
+    git-crypt  # secrets in git repos
+    gnomeExtensions.appindicator  # bg apps
     gnomeExtensions.bing-wallpaper-changer
-    gnomeExtensions.dash-to-panel
-    gnomeExtensions.touch-x
+    gnomeExtensions.clipboard-indicator
+    gnomeExtensions.dash-to-panel  # taskbar
+    gnomeExtensions.touch-x  # touch ripples
+    rclone  # onedrive
     spotify
     stremio
     terminator

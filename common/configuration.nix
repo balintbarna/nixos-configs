@@ -16,7 +16,6 @@
   };
   #
   environment.systemPackages = with pkgs; [
-    evolution  # to set up mail accounts
     fragments  # torrent
     home-manager  # declarative home
     nixos-conf-editor.packages.${system}.nixos-conf-editor
