@@ -26,7 +26,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  # boot.plymouth.enable = true;
+  boot.plymouth.enable = true;
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     extra-substituters = [
