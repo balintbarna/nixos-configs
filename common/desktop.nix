@@ -6,10 +6,11 @@
     printing.enable = true;
     xserver = {
       enable = true;
-      layout = "dk";
+      layout = "dk,hu";
       xkbVariant = "";
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
     };
   };
+  console.useXkbConfig = true;
 }
