@@ -37,6 +37,18 @@
     };
   };
   #
+  systemd.user.services.onedrived = {
+    Unit = {
+      Description = "Onedrive mount";
+    };
+    Service = {
+      Type = "oneshot";
+      RemainAfterExit = "yes";
+      ExecStart = "${pkgs.rclone}/bin/rclone mount onedrive: /home/${pconf.user}/OneDrive --vfs-cache-mode writes --daemon";
+      ExecStop = "${pkgs.coreutils}/bin/umount /home/${pconf.user}/OneDrive";
+    };
+  };
+  #
   dconf.settings."org/gnome/desktop/wm/preferences".button-layout = ":minimize,close";
   #
   nixpkgs.config.allowUnfree = true;
