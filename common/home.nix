@@ -1,6 +1,7 @@
 { pkgs, pconf, ... }: {
   imports = [
     ./online-accounts.nix
+    ./theming.nix
   ];
   home.packages = (with pkgs; [
     authy  # MFA codes
@@ -41,6 +42,9 @@
     Unit = {
       Description = "Onedrive mount";
     };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
     Service = {
       Type = "oneshot";
       RemainAfterExit = "yes";
@@ -48,8 +52,6 @@
       ExecStop = "${pkgs.coreutils}/bin/umount /home/${pconf.user}/OneDrive";
     };
   };
-  #
-  dconf.settings."org/gnome/desktop/wm/preferences".button-layout = ":minimize,close";
   #
   nixpkgs.config.allowUnfree = true;
   #
