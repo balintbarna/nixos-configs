@@ -2,7 +2,7 @@
   imports = [
     ./online-accounts.nix
   ];
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     authy  # MFA codes
     bitwarden  # passwords
     brave  # browser
@@ -11,17 +11,23 @@
     evolution  # to set up mail accounts
     gimp
     git-crypt  # secrets in git repos
-    gnomeExtensions.appindicator  # bg apps
-    gnomeExtensions.bing-wallpaper-changer
-    gnomeExtensions.clipboard-indicator
-    gnomeExtensions.dash-to-panel  # taskbar
-    gnomeExtensions.touch-x  # touch ripples
+    gnome.gnome-tweaks
     rclone  # onedrive
     spotify
     stremio
     terminator
     vscode
-  ];
+  ]) ++ (with pkgs.gnomeExtensions; [
+    appindicator  # bg apps icon
+    auto-activities  # when there are no windows
+    bing-wallpaper-changer
+    clipboard-indicator
+    dash-to-panel  # taskbar
+    fullscreen-to-empty-workspace
+    overview-background
+    status-area-horizontal-spacing
+    touch-x  # touch ripples
+  ]);
   #
   programs.git = {
     enable = true;
