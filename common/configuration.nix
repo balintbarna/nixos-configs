@@ -18,8 +18,6 @@
   environment.systemPackages = with pkgs; [
     fragments  # torrent
     home-manager  # declarative home
-    nixos-conf-editor.packages.${system}.nixos-conf-editor
-    nix-software-center.packages.${system}.nix-software-center
   ];
   # Auto unlock:
   boot.initrd.systemd.enable = true;

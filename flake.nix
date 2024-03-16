@@ -2,14 +2,6 @@
   inputs = {
     nixpkgs.url = github:nixos/nixpkgs/2be119add7b37dc535da2dd4cba68e2cf8d1517e;  # 23.11
     nixos-hardware.url = github:NixOS/nixos-hardware/59e37017b9ed31dee303dbbd4531c594df95cfbc;  # 2024.3.2
-    nixos-conf-editor = {  # 0.1.2
-      url = github:snowfallorg/nixos-conf-editor/8ae5fc7d1d0170611d754428795a74cd53e81fea;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-software-center = {  # 0.1.2
-      url = github:snowfallorg/nix-software-center/2a611092d42d8be28b7baac62ca45bf3a15ad007;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     lanzaboote = {  # v0.3.0
       url = github:nix-community/lanzaboote/64b903ca87d18cef2752c19c098af275c6e51d63;
       inputs.nixpkgs.follows = "nixpkgs";
