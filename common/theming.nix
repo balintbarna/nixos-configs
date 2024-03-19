@@ -14,10 +14,10 @@
   gtk = with pkgs; {
     enable = true;
     iconTheme = { name = "WhiteSur-dark"; package = whitesur-icon-theme; };
-    theme = { name = "Orchis-Dark"; package = orchis-theme; };
+    theme = { name = "Adwaita-dark"; package = orchis-theme; };
     cursorTheme = { name = "Bibata-Modern-Ice"; package = bibata-cursors; };
-    gtk3.extraConfig = { Settings = "gtk-application-prefer-dark-theme=1"; };
-    gtk4.extraConfig = { Settings = "gtk-application-prefer-dark-theme=1"; };
+    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
   };
-  home.sessionVariables.GTK_THEME = "Orchis-Dark";
+  home.sessionVariables.GTK_THEME = "Adwaita-dark";
 }

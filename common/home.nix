@@ -13,6 +13,7 @@
     gimp
     git-crypt  # secrets in git repos
     gnome.gnome-tweaks
+    libreoffice
     rclone  # onedrive
     spotify
     stremio
@@ -22,10 +23,10 @@
     appindicator  # bg apps icon
     auto-activities  # when there are no windows
     bing-wallpaper-changer
+    blur-my-shell
     clipboard-indicator
     dash-to-panel  # taskbar
     fullscreen-to-empty-workspace
-    overview-background
     status-area-horizontal-spacing
     touch-x  # touch ripples
   ]);
