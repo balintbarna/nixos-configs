@@ -1,5 +1,6 @@
 { pkgs, pconf, ... }: {
   imports = [
+    ./onedrive.nix
     ./online-accounts.nix
     ./theming.nix
   ];
@@ -14,10 +15,8 @@
     git-crypt  # secrets in git repos
     gnome.gnome-tweaks
     libreoffice
-    rclone  # onedrive
     spotify
     stremio
-    terminator
     vscode
   ]) ++ (with pkgs.gnomeExtensions; [
     appindicator  # bg apps icon
@@ -36,21 +35,6 @@
     extraConfig.user = {
       name = pconf.name;
       email = pconf.mail;
-    };
-  };
-  #
-  systemd.user.services.onedrived = {
-    Unit = {
-      Description = "Onedrive mount";
-    };
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-    Service = {
-      Type = "oneshot";
-      RemainAfterExit = "yes";
-      ExecStart = "${pkgs.rclone}/bin/rclone mount onedrive: /home/${pconf.user}/OneDrive --vfs-cache-mode writes --daemon";
-      ExecStop = "${pkgs.coreutils}/bin/umount /home/${pconf.user}/OneDrive";
     };
   };
   #
