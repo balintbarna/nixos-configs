@@ -3,6 +3,7 @@
     gnome-tour
   ]) ++ (with pkgs.gnome; [
     gnome-maps
+    gnome-shell-extensions
     simple-scan
     yelp
   ]);

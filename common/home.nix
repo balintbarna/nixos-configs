@@ -26,6 +26,7 @@
     clipboard-indicator
     dash-to-panel  # taskbar
     fullscreen-to-empty-workspace
+    removable-drive-menu
     status-area-horizontal-spacing
     touch-x  # touch ripples
   ]);
