@@ -9,6 +9,21 @@
       dynamic-workspaces = true;
       edge-tiling = true;
     };
+    "org/gnome/shell" = {
+      disabled-extensions = [];
+      enabled-extensions = [
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "auto-activities@CleoMenezesJr.github.io"
+        "BingWallpaper@ineffable-gmail.com"
+        "blur-my-shell@aunetx"
+        "clipboard-indicator@tudmotu.com"
+        "dash-to-panel@jderose9.github.com"
+        "drive-menu@gnome-shell-extensions.gcampax.github.com"
+        "fullscreen-to-empty-workspace@aiono.dev"
+        "status-area-horizontal-spacing@mathematical.coffee.gmail.com"
+        "touchx@neuromorph"
+      ];
+    };
   };  # inspiration from: dconf watch /
   #
   gtk = with pkgs; {
