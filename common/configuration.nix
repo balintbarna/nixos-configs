@@ -14,11 +14,8 @@
     description = pconf.name;
     extraGroups = [ "networkmanager" "wheel" "video" ];
   };
-  #
-  environment.systemPackages = with pkgs; [
-    fragments  # torrent
-    home-manager  # declarative home
-  ];
+  # Declarative home configuration
+  environment.systemPackages = [ pkgs.home-manager ];
   # Auto unlock:
   boot.initrd.systemd.enable = true;
   # Bootloader.
