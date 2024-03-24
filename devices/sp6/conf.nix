@@ -33,6 +33,7 @@ in {
   boot.kernelModules = [
     "v4l2loopback"
   ];
+  boot.kernel.sysctl = { "vm.swappiness" = 10; };
   boot.extraModulePackages = with config.boot.kernelPackages; [
     v4l2loopback.out
   ];
