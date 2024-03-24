@@ -1,7 +1,7 @@
 { pkgs, lib, pconf, ... }: {
   imports = [
     ./hw.nix
-    ../../common/configuration.nix
+    ../../modules/conf.nix
   ];
   # Gaming
   programs.steam.enable = true;

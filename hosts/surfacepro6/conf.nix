@@ -9,7 +9,7 @@ in {
     ./hw.nix
     nixos-hardware.nixosModules.microsoft-surface-pro-intel
     "${libcamera_surface}/libcamera.nix"
-    ../../common/configuration.nix
+    ../../modules/conf.nix
   ];
   #
   networking.hostName = "${pconf.user}-surfacepro"; # Define your hostname.

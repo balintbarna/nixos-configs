@@ -12,7 +12,7 @@
     };
   };
   outputs = { nixpkgs, home-manager, ... }@attrs: let
-    pconf = (import ./common/pconf.nix.secret);
+    pconf = (import ./modules/pconf.nix.secret);
     system = "x86_64-linux";
     specialArgs = attrs // { inherit pconf; };
     pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
@@ -21,17 +21,17 @@
     nixosConfigurations = {
       "${pconf.user}-surfacepro" = nixpkgs.lib.nixosSystem {
         inherit system specialArgs;
-        modules = [ ./devices/sp6/conf.nix ];
+        modules = [ ./hosts/surfacepro6/conf.nix ];
       };
       "${pconf.user}-tower" = nixpkgs.lib.nixosSystem {
         inherit system specialArgs;
-        modules = [ ./devices/tower/conf.nix ];
+        modules = [ ./hosts/tower/conf.nix ];
       };
     };
     homeConfigurations = {
       "${pconf.user}" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs extraSpecialArgs;
-        modules = [ ./common/home.nix ];
+        modules = [ ./modules/home.nix ];
       };
     };
     devShells."${system}".default = import ./shell.nix { inherit pkgs; };
