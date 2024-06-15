@@ -51,10 +51,13 @@
       "/secrets" = { hostPath = "/persistent/nextcloud/secrets"; };
       "/var/lib/nextcloud" = {
         hostPath = "/persistent/nextcloud/home";
-        # hostPath = "/mnt/box/nextcloud/home";
         isReadOnly = false;
       };
-      "/var/lib/postgresql" = {
+      "/var/lib/nextcloud/data" = {
+        hostPath = "/mnt/box/nextcloud/data";
+        isReadOnly = false;
+      };
+        "/var/lib/postgresql" = {
         hostPath = "/persistent/nextcloud/db";
         isReadOnly = false;
       };
@@ -63,6 +66,7 @@
       systemd.tmpfiles.rules = [
         "d /var/lib/nextcloud 700 nextcloud nextcloud -"
         "d /var/lib/postgresql 700 nextcloud nextcloud -"
+        "d /var/lib/nextcloud/data 700 nextcloud nextcloud -"
       ];
       networking.firewall.enable = false;
       services.nextcloud = {
