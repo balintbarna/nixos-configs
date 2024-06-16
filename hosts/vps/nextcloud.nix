@@ -74,7 +74,7 @@
         package = pkgs.nextcloud29;
         hostName = pconf.domain.nextcloud;
         https = true;
-        maxUploadSize = "16G";
+        maxUploadSize = "20G";
         configureRedis = true;
         database.createLocally = true;
         config = {
