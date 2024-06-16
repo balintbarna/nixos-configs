@@ -27,6 +27,7 @@
   # Add git - needed for everything
   programs.git.enable = true;
   environment.systemPackages = with pkgs; [
+    diskonaut
     git-crypt
     helix
     htop
