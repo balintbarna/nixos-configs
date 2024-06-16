@@ -15,7 +15,7 @@
   fileSystems."/mnt/box" = {
     device = "${pconf.domain.box}:/home";
     fsType = "fuse.sshfs";
-    options = [ "defaults" "_netdev" "port=23" "allow_other" ];
+    options = [ "defaults" "_netdev" "port=23" "allow_other" "compression=no" ];
   };
   # Set your time zone.
   time.timeZone = pconf.timezone;
