@@ -29,7 +29,9 @@
   environment.systemPackages = with pkgs; [
     git-crypt
     helix
+    htop
     sshfs
+    tree
   ];
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
