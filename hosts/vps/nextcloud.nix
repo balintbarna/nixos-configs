@@ -1,4 +1,7 @@
-{ pkgs, pconf, ... }: {
+{ pkgs, pconf, ... }: let
+  host_address = "192.168.100.10";
+  guest_address = "192.168.100.11";
+in {
   # Reverse proxy for collabora
   services.nginx.virtualHosts."${pconf.domain.collabora}" = {
     enableACME = true;
@@ -26,7 +29,7 @@
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://192.168.100.11";
+      proxyPass = "http://${guest_address}";
       proxyWebsockets = true;
       extraConfig = ''
         proxy_redirect http://$host https://$host;  # required for apps
@@ -43,8 +46,8 @@
     ephemeral = true;
     autoStart = true;
     privateNetwork = true;
-    hostAddress = "192.168.100.10";
-    localAddress = "192.168.100.11";
+    hostAddress = host_address;
+    localAddress = guest_address;
     hostAddress6 = "fc00::1";
     localAddress6 = "fc00::2";
     bindMounts = {
@@ -83,7 +86,7 @@
           adminpassFile = "/secrets/pw";
         };
         settings = {
-          trusted_proxies = [ "192.168.100.10" ];
+          trusted_proxies = [ host_address ];
           maintenance_window_start = 1;
           log_type = "file";
           mail_smtpmode = "smtp";
