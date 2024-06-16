@@ -14,5 +14,6 @@
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
+    clientMaxBodySize = "20G";
   };
 }
