@@ -105,7 +105,8 @@ in {
         autoUpdateApps.enable = true;
         extraAppsEnable = true;
         extraApps = with config.services.nextcloud.package.packages.apps; {
-          inherit calendar end_to_end_encryption forms notes notify_push richdocuments;
+          inherit calendar deck end_to_end_encryption forms
+          groupfolders notes notify_push polls richdocuments;
         };
       };
       system.stateVersion = "24.05";
