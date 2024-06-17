@@ -119,6 +119,18 @@ in {
             polls
             richdocuments
             tasks;
+          collectives = pkgs.fetchNextcloudApp {
+            name = "collectives";
+            sha256 = "69e3c43f1a2110c44341ddb7a84b1f68b3341eda22f216e8c8439dc1ebfcc97f";
+            url = "https://github.com/nextcloud/collectives/releases/download/v2.12.0/collectives-2.12.0.tar.gz";
+            version = "2.12.0";
+          };
+          workspace = pkgs.fetchNextcloudApp {
+            name = "workspace";
+            sha256 = "ee50b50cbcd03d27a0c9c4c5277d5c622f7ea5e2611182aaf450f51a2cef3f21";
+            url = "https://github.com/arawa/workspace/releases/download/v3.2.0/workspace-3.2.0.tar.gz";
+            version = "3.2.0";
+          };
         };
       };
       system.stateVersion = "24.05";
