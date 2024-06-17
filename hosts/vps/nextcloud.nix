@@ -131,6 +131,12 @@ in {
             url = "https://github.com/arawa/workspace/releases/download/v3.2.0/workspace-3.2.0.tar.gz";
             version = "3.2.0";
           };
+          drawio = pkgs.fetchNextcloudApp {
+            name = "drawio";
+            sha256 = "eee968fbbac720e08216de0b8570c541cfa2821322c1f1c3c1c26e09f09be021";
+            url = "https://github.com/jgraph/drawio-nextcloud/releases/download/v3.0.2/drawio-v3.0.2.tar.gz";
+            version = "3.0.2";
+          };
         };
       };
       system.stateVersion = "24.05";
