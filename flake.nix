@@ -31,6 +31,10 @@
         inherit system specialArgs;
         modules = [ ./hosts/tower/conf.nix ];
       };
+      "${pconf.user}-ally" = nixpkgs.lib.nixosSystem {
+        inherit system specialArgs;
+        modules = [ ./hosts/ally/conf.nix ];
+      };
       vps = nixpkgs.lib.nixosSystem {
         inherit specialArgs;
         modules = [ ./hosts/vps/conf.nix ];
