@@ -99,13 +99,25 @@ in {
           mail_domain = pconf.domain.business;
         };
         phpOptions = {
-          "opcache.interned_strings_buffer" = "10";
+          "opcache.interned_strings_buffer" = "20";
         };
         appstoreEnable = true;
-        autoUpdateApps.enable = true;
         extraAppsEnable = true;
         extraApps = with config.services.nextcloud.package.packages.apps; {
-          inherit calendar end_to_end_encryption forms notes notify_push richdocuments;
+          inherit
+            # bookmarks
+            calendar
+            contacts
+            deck
+            end_to_end_encryption
+            forms
+            groupfolders
+            mail
+            notes
+            notify_push
+            polls
+            richdocuments
+            tasks;
         };
       };
       system.stateVersion = "24.05";
