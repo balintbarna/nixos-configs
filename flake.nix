@@ -11,13 +11,15 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    openbar-nixpkgs.url = "github:balintbarna/nixpkgs/openbar-init";
   };
-  outputs = { nixpkgs, unstable, home-manager, ... }@attrs: let
+  outputs = { nixpkgs, unstable, home-manager, openbar-nixpkgs, ... }@attrs: let
     pconf = (import ./modules/sensitive.secret.nix);
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
     rolling = import unstable { inherit system; config.allowUnfree = true; };
-    extraSpecialArgs = { inherit rolling pconf; };
+    openbar = import openbar-nixpkgs { inherit system; };
+    extraSpecialArgs = { inherit rolling openbar pconf; };
     specialArgs = attrs // extraSpecialArgs;
   in {
     nixosConfigurations = {

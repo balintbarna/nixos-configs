@@ -206,6 +206,22 @@
         "type": "github"
       }
     },
+    "openbar-nixpkgs": {
+      "locked": {
+        "lastModified": 1719422353,
+        "narHash": "sha256-O/fb9ogZ+toC3JFFNQEBUwelTnMrSXAytg8AuC7Z6SA=",
+        "owner": "balintbarna",
+        "repo": "nixpkgs",
+        "rev": "98201a3f1e6e8e215afd5e8164a856696e881098",
+        "type": "github"
+      },
+      "original": {
+        "owner": "balintbarna",
+        "ref": "openbar-init",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-compat": [
@@ -243,6 +259,7 @@
         "lanzaboote": "lanzaboote",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "openbar-nixpkgs": "openbar-nixpkgs",
         "unstable": "unstable"
       }
     },

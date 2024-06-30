@@ -1,8 +1,11 @@
-{ pkgs, rolling, pconf, ... }: {
+{ pkgs, rolling, openbar, pconf, ... }: {
   imports = [
     ./theming.nix
   ];
-  home.packages = (with pkgs; [
+  home.packages = [
+    rolling.gnomeExtensions.fullscreen-to-empty-workspace
+    openbar.gnomeExtensions.open-bar
+  ] ++ (with pkgs; [
     apostrophe  # markdown editor
     bitwarden  # passwords
     blanket  # soothing sounds
@@ -40,10 +43,9 @@
   ]) ++ (with pkgs.gnomeExtensions; [
     appindicator  # background apps icon
     bing-wallpaper-changer  # nice wallpapers
-    blur-my-shell  # background on overview
+    # blur-my-shell  # background on overview
     clipboard-indicator  # clipboard history
-    rolling.gnomeExtensions.fullscreen-to-empty-workspace
-    status-area-horizontal-spacing  # less space waste
+    # status-area-horizontal-spacing  # less space waste
   ]);
   #
   programs.git = {

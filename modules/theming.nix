@@ -14,10 +14,11 @@
       enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
         "BingWallpaper@ineffable-gmail.com"
-        "blur-my-shell@aunetx"
+        # "blur-my-shell@aunetx"
         "clipboard-indicator@tudmotu.com"
         "fullscreen-to-empty-workspace@aiono.dev"
-        "status-area-horizontal-spacing@mathematical.coffee.gmail.com"
+        "openbar@neuromorph"
+        # "status-area-horizontal-spacing@mathematical.coffee.gmail.com"
       ];
     };
   };  # inspiration from: dconf watch /
